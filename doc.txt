@@ -1,0 +1,11 @@
+npm init
+por gulp no script
+npm install --save-dev gulp
+criar .gitignore
+npm run gulp
+npm instal --save-dev gulp sass
+npm install --save-dev sass
+npm install --save-dev gulp-sourcemap
+npm install --save-dev gulp-uglify
+npm install --save-dev gulp-obfuscate
+npm install --save-dev gulp-imagemin@7.1.0
