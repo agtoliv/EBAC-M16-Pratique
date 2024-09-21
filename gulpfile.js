@@ -22,6 +22,12 @@ function comprimeImages(){
         .pipe(gulp.dest('./build/images'));
 }
 
+function comprimeJS(){
+    return gulp.src('./source/scripts/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./build/scripts'));
+}
+
 
 exports.default = gulp.parallel(compilaSass, comprimeImages);
 //exports.default = function (){
