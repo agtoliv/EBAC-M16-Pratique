@@ -16,8 +16,14 @@ function compilaSass(){
         .pipe(gulp.dest('./build/styles'));
 }
 
+function comprimeImages(){
+    return gulp.src('./source/images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./build/images'));
+}
 
-exports.default = gulp.parallel(compilaSass);
+
+exports.default = gulp.parallel(compilaSass, comprimeImages);
 //exports.default = function (){
   //  gulp('./source/styles/*scss'), {ignoreInitial: false}, gulp.series(compilaSass);
 //}
