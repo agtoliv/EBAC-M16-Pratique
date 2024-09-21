@@ -13,7 +13,7 @@ body{
 
 header {
     padding: 16px 0;
-    background-color: variaveis.$corPrincipal;
+    background-color: var.$corPrincipal;
     text-align: center;
     color: #fff;
 }
@@ -45,12 +45,12 @@ header {
             @include elementoForm();
             background-color: transparent;
             border: none;
-            border-bottom: 3px solid variaveis.$corPrincipal;
+            border-bottom: 3px solid var.$corPrincipal;
         }
 
         button{
             @include elementoForm();
-            background-color: variaveis.$corSecundaria;
+            background-color: var.$corSecundaria;
             font-size: 18px;
             font-weight: bold;
             border: none;
@@ -58,13 +58,13 @@ header {
             color: #fff;
 
             &:hover{
-                background-color: darken(variaveis.$corSecundaria, 15%);
+                background-color: darken(var.$corSecundaria, 15%);
             }
         }
     }
 }
 
-@media screen and (max-width: variaveis.$mobile){
+@media screen and (max-width: var.$mobile){
     .container{
         max-width: 80%;
     }
