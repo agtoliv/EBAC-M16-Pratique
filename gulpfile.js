@@ -17,7 +17,7 @@ function compilaSass(){
 }
 
 function comprimeImages(){
-    return gulp.src('./source/images/*')
+    return gulp.src('./source/images/*.{jpg,png,gif,svg}')
         .pipe(imagemin())
         .pipe(gulp.dest('./build/images'));
 }
