@@ -29,7 +29,7 @@ function comprimeJS(){
 }
 
 
-exports.default = gulp.parallel(compilaSass, comprimeImages);
+exports.default = gulp.parallel(compilaSass, comprimeImages, comprimeJS);
 //exports.default = function (){
   //  gulp('./source/styles/*scss'), {ignoreInitial: false}, gulp.series(compilaSass);
 //}
