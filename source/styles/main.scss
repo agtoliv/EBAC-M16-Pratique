@@ -1,6 +1,13 @@
 @use 'var';
 @use 'reset';
 
+@mixin elementoForm (){
+    padding: 8px;
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
 body{
     background-color: #ccc;
 }
