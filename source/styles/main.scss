@@ -1,21 +1,71 @@
 @use 'var';
 @use 'reset';
 
-@mixin elementoForm (){
+@mixin elementoForm() {
     padding: 8px;
     display: block;
     width: 100%;
     margin-bottom: 16px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-body{
-    background-color: #ccc;
+@mixin gradientBackground($color1, $color2) {
+    background: linear-gradient(135deg, $color1, $color2);
 }
 
-.container{
+@mixin textShadow($color) {
+    text-shadow: 2px 2px 4px $color;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    @include gradientBackground(#e0e0e0, #ffffff);
+    animation: gradientShift 10s infinite alternate;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.container {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+        animation: rotateGradient 20s infinite linear;
+    }
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 header {
@@ -23,39 +73,94 @@ header {
     background-color: var.$corPrincipal;
     text-align: center;
     color: #fff;
+    font-size: 24px;
+    letter-spacing: 2px;
+    position: relative;
+    @include textShadow(rgba(0, 0, 0, 0.5));
+
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: var.$corSecundaria;
+    }
+
+    &:before {
+        top: 0;
+        left: 0;
+        animation: borderSlide 2s linear infinite;
+    }
+
+    &:after {
+        bottom: 0;
+        right: 0;
+        animation: borderSlide 2s linear infinite reverse;
+    }
 }
 
-.form-container{
+@keyframes borderSlide {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.form-container {
     height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-width: 760px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 2s ease-out;
+    overflow: hidden;
 
-    h2{
-        font-size: pixelParaEM(48px);
+    h2 {
+        font-size: 3em;
         text-align: center;
+        color: var.$corPrincipal;
+        text-transform: uppercase;
+        @include textShadow(var.$corSecundaria);
+        animation: pulseText 1.5s infinite alternate;
     }
 
-    form{
+    form {
         width: 100%;
         max-width: 480px;
         margin-top: 40px;
 
-        label{
+        label {
             font-weight: bold;
             cursor: pointer;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: var.$corPrincipal;
         }
 
-        input{
+        input {
             @include elementoForm();
             background-color: transparent;
             border: none;
             border-bottom: 3px solid var.$corPrincipal;
+            font-size: 18px;
+            color: var.$corPrincipal;
+
+            &:focus {
+                border-bottom-color: var.$corSecundaria;
+                outline: none;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            }
         }
 
-        button{
+        button {
             @include elementoForm();
             background-color: var.$corSecundaria;
             font-size: 18px;
@@ -63,11 +168,31 @@ header {
             border: none;
             cursor: pointer;
             color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
 
-            &:hover{
+            &:hover {
                 background-color: yellow;
+                transform: scale(1.05);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            &:active {
+                transform: scale(0.95);
+                box-shadow: none;
             }
         }
+    }
+}
+
+@keyframes pulseText {
+    0% {
+        transform: scale(1);
+        color: var.$corPrincipal;
+    }
+    100% {
+        transform: scale(1.05);
+        color: var.$corSecundaria;
     }
 }
 
@@ -75,31 +200,93 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; // Espaçamento entre as imagens
+    gap: 20px;
+    animation: listImagesAnimation 3s infinite alternate ease-in-out;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes listImagesAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .images {
-    flex-basis: 30%; // Define o tamanho das imagens como 30% da largura do container
-    max-width: 30%; // Garante que o tamanho máximo seja 30%
-    text-align: center; // Centraliza o conteúdo da div
+    flex-basis: 30%;
+    max-width: 30%;
+    text-align: center;
+    position: relative;
+    transition: transform 0.4s, filter 0.4s;
+
+    &:hover {
+        transform: scale(1.1);
+        filter: brightness(0.9);
+    }
+
+    &:after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover:after {
+        opacity: 1;
+    }
 
     img {
-      width: 100%; // Faz com que a imagem ocupe 100% da largura da div
-      height: auto; // Mantém a proporção da imagem
-      display: block;
-      margin: 0 auto;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
-  }
-  
-  @media (min-width: 768px) {
-    .list-images {
-      justify-content: space-around; // Centraliza as imagens em resoluções maiores
-    }
-  }
-  
+}
 
-@media screen and (max-width: var.$mobile){
-    .container{
+@media (min-width: 768px) {
+    .list-images {
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: var.$mobile) {
+    .container {
         max-width: 80%;
+    }
+
+    .form-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
