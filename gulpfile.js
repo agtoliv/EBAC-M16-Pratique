@@ -5,3 +5,13 @@ const uglify = require('gulp-uglify');
 const obfuscate = require('gulp-obfuscate');
 const imagemin = require('gulp-imagemin');
 
+//Compilação SASS
+function compilaSass(){
+    return gulp.src('./source/styles/main.scss')
+    .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }))
+        .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest('./build/styles'));
+}
