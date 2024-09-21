@@ -71,6 +71,33 @@ header {
     }
 }
 
+.list-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; // Espaçamento entre as imagens
+}
+
+.images {
+    flex-basis: 30%; // Define o tamanho das imagens como 30% da largura do container
+    max-width: 30%; // Garante que o tamanho máximo seja 30%
+    text-align: center; // Centraliza o conteúdo da div
+
+    img {
+      width: 100%; // Faz com que a imagem ocupe 100% da largura da div
+      height: auto; // Mantém a proporção da imagem
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .list-images {
+      justify-content: space-around; // Centraliza as imagens em resoluções maiores
+    }
+  }
+  
+
 @media screen and (max-width: var.$mobile){
     .container{
         max-width: 80%;
