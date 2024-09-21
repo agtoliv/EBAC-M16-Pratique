@@ -15,3 +15,9 @@ function compilaSass(){
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./build/styles'));
 }
+
+
+exports.default = gulp.parallel(compilaSass);
+//exports.default = function (){
+  //  gulp('./source/styles/*scss'), {ignoreInitial: false}, gulp.series(compilaSass);
+//}

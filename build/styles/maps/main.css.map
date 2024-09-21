@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.scss","var.scss"],"names":[],"mappings":"AAEA,KACI,iBCHW,QDKX","file":"../main.css","sourcesContent":["@use 'var';\r\n\r\nbody{\r\n    background-color: var.$corPrincipal;\r\n\r\n    color: white;\r\n}","$corPrincipal: yellowgreen;"]}
